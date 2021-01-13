@@ -19,7 +19,10 @@
             "../../bazel-out/k8-dbg/bin",
             "../../bazel-out/x64_windows-dbg/bin",
         ],
-        "baseUrl": ".",
+        
+        // https://www.typescriptlang.org/docs/handbook/module-resolution.html#base-ur
+        "baseUrl": "../../",
+        
         "paths": {
             ":*": [
                 "./frontend/*",
