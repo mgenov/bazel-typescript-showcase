@@ -1,0 +1,11 @@
+load("@npm//@bazel/typescript:index.bzl", "ts_project")
+
+ts_project(
+    name = "tsconfig",
+    srcs = ["index.ts"],
+    composite = True,
+    extends = "//frontend/typescript:tsconfig.dts.json",
+    tsconfig = ":tsconfig.json",
+    visibility = ["//visibility:public"],
+    deps = ["@npm//@types/node"],
+)

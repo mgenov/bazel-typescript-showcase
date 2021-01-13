@@ -1,0 +1,56 @@
+{
+    "compilerOptions": {
+        "resolveJsonModule": true,
+        "noUnusedLocals": true,
+        "composite": true,
+        "esModuleInterop": true,
+        "noUnusedParameters": true,
+        "preserveConstEnums": true,
+        "allowSyntheticDefaultImports": true,
+        "noFallthroughCasesInSwitch": true,
+        "rootDirs": [
+            ".",
+            // Ensure that the relative paths in types produced by bazel get turned into
+            // "frontend/" paths.
+            "../../bazel-out/darwin-fastbuild/bin",
+            "../../bazel-out/k8-fastbuild/bin",
+            "../../bazel-out/x64_windows-fastbuild/bin",
+            "../../bazel-out/darwin-dbg/bin",
+            "../../bazel-out/k8-dbg/bin",
+            "../../bazel-out/x64_windows-dbg/bin",
+        ],
+        "baseUrl": ".",
+        "paths": {
+            ":*": [
+                "./frontend/*",
+                // Bazel generates the .d.ts files in the bazel-out directory, so we
+                // need to tell TypeScript that it might be able to find them there.
+                //
+                // This hack was inspired by formatjs:
+                // https://github.com/formatjs/formatjs/blob/268d6aef6fc08180a0be691b631eb1cdfb68ca31/tsconfig.json#L19-L41
+                // And the rootDirs note in the docs here:
+                // https://bazelbuild.github.io/rules_nodejs/TypeScript.html#ts_project
+                "./bazel-out/darwin-fastbuild/bin/frontend/*",
+                "./bazel-out/k8-fastbuild/bin/frontend/*",
+                "./bazel-out/x64_windows-fastbuild/bin/frontend/*",
+                "./bazel-out/darwin-dbg/bin/frontend/*",
+                "./bazel-out/k8-dbg/bin/frontend/*",
+                "./bazel-out/x64_windows-dbg/bin/frontend/*",
+            ],
+            // WARNING: Don't use frontend/ imports, use colon instead. This is for bazel build
+            // type resolution: The rootDirs above produce "frontend/" paths in the .d.ts files
+            // produced by bazel, and then we remap those paths back into bazel-out here.
+            // Note this does mean you can never install a package named "frontend", but that's
+            // probably fine since this package is unlikely to be something we'd install:
+            // https://www.npmjs.com/package/frontend
+            "frontend/*": [
+                "./bazel-out/darwin-fastbuild/bin/frontend/*",
+                "./bazel-out/k8-fastbuild/bin/frontend/*",
+                "./bazel-out/x64_windows-fastbuild/bin/frontend/*",
+                "./bazel-out/darwin-dbg/bin/frontend/*",
+                "./bazel-out/k8-dbg/bin/frontend/*",
+                "./bazel-out/x64_windows-dbg/bin/frontend/*",
+            ],
+        }
+    }
+}

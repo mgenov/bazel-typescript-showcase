@@ -1,0 +1,6 @@
+package(default_visibility = ["//frontend:__subpackages__"])
+
+exports_files([
+    "tsconfig-base.json",
+    "tsconfig.json",
+])

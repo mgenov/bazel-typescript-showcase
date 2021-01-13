@@ -1,0 +1,5 @@
+package(default_visibility = ["//frontend:__subpackages__"])
+
+exports_files([
+    "tsconfig.dts.json",
+])

@@ -1,0 +1,43 @@
+{
+    "name": "monorepo",
+    "version": "0.0.1",
+    "main": "index.js",
+    "private": true,
+    "homepage": ".",
+    "dependencies": {
+        "typescript": "^3.9.7"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.12.11",
+        "@babel/preset-react": "^7.12.10",
+        "@bazel/typescript": "^3.0.0",
+        "@types/node": "^12.19.7",
+        "eslint-config-prettier": "6.15.0",
+        "eslint-import-resolver-webpack": "0.13.0",
+        "eslint-plugin-prettier": "3.1.4",
+        "jest-cli": "^26.6.3",
+        "prettier": "2.2.0",
+        "react-refresh": "0.9.0",
+        "react-test-renderer": "^16.14.0"
+    },
+    "lint-staged": {
+        "src/**/*.{js,jsx,ts,tsx}": [
+            "eslint --fix"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "engines": {
+        "node": ">=12.0.0"
+    }
+}
