@@ -1,0 +1,14 @@
+{
+    "extends": "../typescript/tsconfig.dts.json",
+    "include": [
+        ".",
+    ],
+    "compilerOptions": {
+        "listFiles": true
+    },
+    "references": [
+        {
+            "path": "../project-a"
+        }
+    ]
+}

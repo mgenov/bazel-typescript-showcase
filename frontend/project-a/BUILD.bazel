@@ -1,4 +1,7 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
+load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
+
+package(default_visibility = ["//visibility:public"])
 
 ts_project(
     name = "tsconfig",
@@ -10,4 +13,10 @@ ts_project(
     deps = [
         "//frontend/project-b:tsconfig",
     ],
+)
+
+js_library(
+    name = "project_a_lib",
+    package_name = ":project-a",
+    srcs = [":index.js"],
 )

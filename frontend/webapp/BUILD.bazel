@@ -1,0 +1,29 @@
+load("@npm//@bazel/typescript:index.bzl", "ts_project")
+load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
+
+ts_project(
+    name = "tsconfig",
+    srcs = ["index.ts"],
+    composite = True,
+    extends = "//frontend/typescript:tsconfig.dts.json",
+    tsconfig = ":tsconfig.json",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//frontend/project-a:tsconfig",
+    ],
+)
+
+rollup_bundle(
+    name = "bundle",
+    srcs = [
+        "index.js",
+    ],
+    config_file = "rollup.config.js",
+    entry_point = "index.js",
+    link_workspace_root = True,
+    deps = [
+        "@npm//@rollup/plugin-alias",
+        "@npm//@rollup/plugin-commonjs",
+        "@npm//@rollup/plugin-node-resolve",
+    ],
+)
