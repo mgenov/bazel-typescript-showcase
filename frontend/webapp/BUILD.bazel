@@ -18,14 +18,16 @@ rollup_bundle(
     srcs = [
         "index.js",
         "//frontend/project-a:tsconfig",
+        "//frontend/project-a/lib1:tsconfig",
         "//frontend/project-b:tsconfig",
     ],
     config_file = "rollup.config.js",
     entry_point = "index.js",
-    link_workspace_root = True,
+    # link_workspace_root = True,
     deps = [
         "@npm//@rollup/plugin-alias",
         "@npm//@rollup/plugin-commonjs",
         "@npm//@rollup/plugin-node-resolve",
+        "@npm//rollup-plugin-includepaths",
     ],
 )
