@@ -25,12 +25,12 @@ http_archive(
     ],
 )
 
-# The npm_install rule runs yarn anytime the package.json or package-lock.json file changes.
+# The yarn_install rule runs yarn anytime the package.json or package-lock.json file changes.
 # It also extracts any Bazel rules distributed in an npm package.
-load("@build_bazel_rules_nodejs//:index.bzl", "npm_install")
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
-npm_install(
+yarn_install(
     name = "npm",
     package_json = "//3rdparty:package.json",
-    package_lock_json = "//3rdparty:package-lock.json",
+    yarn_lock = "//3rdparty:yarn.lock",
 )
