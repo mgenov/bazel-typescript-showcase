@@ -1,13 +1,19 @@
 {
     "compilerOptions": {
-        "resolveJsonModule": true,
-        "noUnusedLocals": true,
+        "target": "es5",
+        "allowJs": false,
+        "skipLibCheck": true,
         "composite": true,
+        "lib": [
+            "ES2015",
+            "DOM"
+        ],
         "esModuleInterop": true,
-        "noUnusedParameters": true,
-        "preserveConstEnums": true,
         "allowSyntheticDefaultImports": true,
-        "noFallthroughCasesInSwitch": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "module": "esnext",
+        "moduleResolution": "Node",
         "rootDirs": [
             ".",
             // Ensure that the relative paths in types produced by bazel get turned into

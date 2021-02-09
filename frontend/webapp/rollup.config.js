@@ -1,6 +1,14 @@
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
+import includePaths from 'rollup-plugin-includepaths';
+
+let includePathOptions = {
+    include: {},
+    paths: ['../project-a', '../project-b'],
+    external: [],
+    extensions: ['.js', '.json', '.html']
+};
 
 module.exports = {
     onwarn: (warning) => {
@@ -10,6 +18,7 @@ module.exports = {
         throw new Error(warning.message);
     },
     plugins: [
+        includePaths(includePathOptions),
         nodeResolve(),
         commonjs(),
         alias({
