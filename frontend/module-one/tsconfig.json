@@ -1,0 +1,12 @@
+{
+    "extends": "../typescript/tsconfig.dts.json",
+    "include": [
+        ".",
+    ],
+    "compilerOptions": {},
+    "references": [
+        // {
+        //     "path": "../project-b"
+        // }
+    ]
+}

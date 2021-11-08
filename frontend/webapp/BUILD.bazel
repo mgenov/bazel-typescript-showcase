@@ -9,10 +9,12 @@ rollup_bundle(
     entry_point = "main.js",
     deps = [
         "//frontend/module-one",
+        "//frontend/module-ts",
         "//frontend/module-two",
         "@npm//@babel/preset-react",
         "@npm//@rollup/plugin-babel",
         "@npm//@rollup/plugin-commonjs",
         "@npm//@rollup/plugin-node-resolve",
+        "@npm//react",
     ],
 )

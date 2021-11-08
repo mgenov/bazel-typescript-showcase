@@ -1,0 +1,32 @@
+load("@npm//@bazel/typescript:index.bzl", "ts_project")
+load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
+
+package(default_visibility = ["//visibility:public"])
+
+ts_project(
+    name = "tsconfig",
+    srcs = [
+        "index.ts",
+        "tree.tsx",
+    ],
+    allow_js = True,
+    composite = True,
+    extends = "//frontend/typescript:tsconfig.dts.json",
+    tsconfig = ":tsconfig.json",
+    visibility = ["//visibility:public"],
+    deps = [
+        # "//frontend/project-a/lib1:tsconfig",
+        # "//frontend/project-b:tsconfig",
+        "//frontend/module-one:tsconfig",
+        "@npm//react",
+    ],
+)
+
+js_library(
+    name = "module-ts",
+    package_name = "@module-ts",
+    srcs = [
+        ":index.js",
+        ":tree.js",
+    ],
+)

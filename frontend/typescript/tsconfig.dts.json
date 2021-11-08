@@ -8,6 +8,7 @@
             "ES2015",
             "DOM"
         ],
+        "jsx": "react",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": false,
@@ -28,7 +29,7 @@
         // https://www.typescriptlang.org/docs/handbook/module-resolution.html#base-url
         "baseUrl": "../../",
         "paths": {
-            ":*": [
+            "@*": [
                 "./frontend/*",
                 // Bazel generates the .d.ts files in the bazel-out directory, so we
                 // need to tell TypeScript that it might be able to find them there.
