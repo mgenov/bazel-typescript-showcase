@@ -1,7 +1,0 @@
-{
-    "extends": "../../typescript/tsconfig.dts.json",
-    "include": [
-        ".",
-    ],
-    "compilerOptions": {},
-}

@@ -1,0 +1,8 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
+
+js_library(
+    name = "module-one",
+    package_name = "@alias-mapping/module-one",
+    srcs = [":index.js"],
+    visibility = ["//visibility:public"],
+)

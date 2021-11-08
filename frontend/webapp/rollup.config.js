@@ -1,14 +1,37 @@
-import commonjs from '@rollup/plugin-commonjs';
-import nodeResolve from '@rollup/plugin-node-resolve';
-import alias from '@rollup/plugin-alias';
-import includePaths from 'rollup-plugin-includepaths';
+// import commonjs from '@rollup/plugin-commonjs';
+// import nodeResolve from '@rollup/plugin-node-resolve';
+// import alias from '@rollup/plugin-alias';
+// import includePaths from 'rollup-plugin-includepaths';
 
-let includePathOptions = {
-    include: {},
-    paths: ['../project-a', '../project-b'],
-    external: [],
-    extensions: ['.js', '.json', '.html']
-};
+// let includePathOptions = {
+//     include: {},
+//     paths: ['../project-a', '../project-b'],
+//     external: [],
+//     extensions: ['.js', '.json', '.html']
+// };
+
+// module.exports = {
+//     onwarn: (warning) => {
+//         // Always fail on warnings, assuming we don't know which are harmless.
+//         // We can add exclusions here based on warning.code, if we discover some
+//         // types of warning should always be ignored under bazel.
+//         throw new Error(warning.message);
+//     },
+//     plugins: [
+//         includePaths(includePathOptions),
+//         nodeResolve(),
+//         commonjs(),
+//         alias({
+//             entries: [
+//                 { find: ':project-a', replacement: '../project-a' },
+//                 { find: ':project-b', replacement: '../project-b' },
+//             ],
+//         })
+//     ],
+// };
+import nodeResolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import babel from '@rollup/plugin-babel';
 
 module.exports = {
     onwarn: (warning) => {
@@ -18,14 +41,10 @@ module.exports = {
         throw new Error(warning.message);
     },
     plugins: [
-        includePaths(includePathOptions),
         nodeResolve(),
+        babel({
+            presets: ["@babel/preset-react"],
+        }),
         commonjs(),
-        alias({
-            entries: [
-                { find: ':project-a', replacement: '../project-a' },
-                { find: ':project-b', replacement: '../project-b' },
-            ],
-        })
     ],
 };
