@@ -5,6 +5,7 @@ package(default_visibility = ["//visibility:public"])
 ts_project(
     name = "tsconfig",
     srcs = ["index.ts"],
+    allow_js = True,
     composite = True,
     extends = "//frontend/typescript:tsconfig.dts.json",
     tsconfig = ":tsconfig.json",

@@ -8,12 +8,14 @@ ts_project(
         "index.ts",
         "myfile.ts",
     ],
+    allow_js = True,
     composite = True,
     extends = "//frontend/typescript:tsconfig.dts.json",
     tsconfig = ":tsconfig.json",
     visibility = ["//visibility:public"],
     deps = [
         "//frontend/project-a/lib1:tsconfig",
+        "//frontend/project-a/lib2:tsconfig",
         "//frontend/project-b:tsconfig",
     ],
 )

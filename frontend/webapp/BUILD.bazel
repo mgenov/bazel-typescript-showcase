@@ -1,15 +1,18 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
+load("@npm//@babel/cli:index.bzl", "babel")
 
 ts_project(
     name = "tsconfig",
     srcs = ["index.ts"],
+    allow_js = True,
     composite = True,
     extends = "//frontend/typescript:tsconfig.dts.json",
     tsconfig = ":tsconfig.json",
     visibility = ["//visibility:public"],
     deps = [
         "//frontend/project-a:tsconfig",
+        "//frontend/project-a/lib2:tsconfig",
     ],
 )
 
@@ -19,6 +22,7 @@ rollup_bundle(
         "index.js",
         "//frontend/project-a:tsconfig",
         "//frontend/project-a/lib1:tsconfig",
+        "//frontend/project-a/lib2:tsconfig",
         "//frontend/project-b:tsconfig",
     ],
     config_file = "rollup.config.js",
@@ -30,4 +34,21 @@ rollup_bundle(
         "@npm//@rollup/plugin-node-resolve",
         "@npm//rollup-plugin-includepaths",
     ],
+)
+
+babel(
+    name = "bundle_es5",
+    args = [
+        "$(execpath bundle)",
+        "--config-file",
+        "./$(execpath es5.babelrc)",
+        "--out-dir",
+        "$(@D)",
+    ],
+    data = [
+        "bundle",
+        "es5.babelrc",
+        "@npm//@babel/preset-env",
+    ],
+    output_dir = True,
 )
