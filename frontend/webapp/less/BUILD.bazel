@@ -1,0 +1,52 @@
+load("@npm//less:index.bzl", "lessc")
+load("//tools/web:defs.bzl", "css_library")
+
+lessc(
+    name = "main",
+    outs = [
+        "main.css",
+        "main.css.map",
+    ],
+    args = [
+        "$(execpath main.less)",
+        # Output paths must use $(execpath) since Bazel puts them in a platform-dependent output directory
+        "$(execpath main.css)",
+        "--silent",
+        "--source-map",
+    ],
+    data = [
+        "flex.less",
+        "main.less",
+        "variables.less",
+        "@npm//bootstrap",
+    ],
+)
+
+lessc(
+    name = "price",
+    outs = [
+        "price.css",
+        "price.css.map",
+    ],
+    args = [
+        "$(execpath price.less)",
+        # Output paths must use $(execpath) since Bazel puts them in a platform-dependent output directory
+        "$(execpath price.css)",
+        "--silent",
+        "--source-map",
+    ],
+    data = [
+        "price.less",
+    ],
+)
+
+css_library(
+    name = "styles",
+    srcs = [
+        ":main.css",
+        ":price.css",
+    ],
+    outs = [
+        "styles.css",
+    ],
+)
